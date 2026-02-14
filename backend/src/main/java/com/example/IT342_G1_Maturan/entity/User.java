@@ -1,6 +1,6 @@
 package com.example.IT342_G1_Maturan.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
@@ -8,7 +8,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer user_id;
+    private Long user_id;
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -24,19 +24,18 @@ public class User {
 
     public User() {}
 
-    public User(Integer user_id, String email, String first_name, String last_name, String password) {
+    public User(Long user_id, String email, String first_name, String last_name, String password) {
         this.user_id = user_id;
         this.email = email;
         this.first_name = first_name;
         this.last_name = last_name;
         this.password = password;
     }
-
-    public Integer getUser_id() {
+    public Long getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(Integer user_id) {
+    public void setUser_id(Long user_id) {
         this.user_id = user_id;
     }
 

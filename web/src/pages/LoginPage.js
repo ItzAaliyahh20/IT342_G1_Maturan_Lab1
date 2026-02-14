@@ -22,15 +22,16 @@ const LoginPage = () => {
         setError('Please fill in all fields');
         return;
       }
+      const res = await fetch('/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
 
-      // Simulate API call
-      const userData = {
-        id: '1',
-        email,
-        name: email.split('@')[0],
-      };
-
-      login(userData);
+      if (!res.ok) throw new Error('Login failed');
+      const data = await res.json();
+      // data: { token, userId }
+      login(data.token, { id: data.userId, email });
       navigate('/dashboard');
     } catch (err) {
       setError('Login failed. Please try again.');

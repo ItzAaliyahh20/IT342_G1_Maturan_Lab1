@@ -12,10 +12,10 @@ import java.util.concurrent.ConcurrentHashMap;
 public class TokenProvider {
 
     private static class TokenEntry {
-        final Integer userId;
+        final Long userId;
         final Instant expiresAt;
 
-        TokenEntry(Integer userId, Instant expiresAt) {
+        TokenEntry(Long userId, Instant expiresAt) {
             this.userId = userId;
             this.expiresAt = expiresAt;
         }
@@ -23,14 +23,14 @@ public class TokenProvider {
 
     private final Map<String, TokenEntry> tokenStore = new ConcurrentHashMap<>();
 
-    public String createToken(Integer userId) {
+    public String createToken(Long userId) {
         String token = UUID.randomUUID().toString();
         Instant expires = Instant.now().plusSeconds(60 * 60 * 24); // 24h
         tokenStore.put(token, new TokenEntry(userId, expires));
         return token;
     }
 
-    public Optional<Integer> getUserFromToken(String token) {
+    public Optional<Long> getUserFromToken(String token) {
         TokenEntry entry = tokenStore.get(token);
         if (entry == null) return Optional.empty();
         if (entry.expiresAt.isBefore(Instant.now())) {

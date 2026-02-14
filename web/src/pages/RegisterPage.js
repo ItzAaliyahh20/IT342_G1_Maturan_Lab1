@@ -4,7 +4,8 @@ import { useAuth } from '../context/AuthContext';
 import '../styles/AuthPages.css';
 
 const RegisterPage = () => {
-  const [name, setName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -20,7 +21,7 @@ const RegisterPage = () => {
 
     try {
       // Validation
-      if (!name || !email || !password || !confirmPassword) {
+      if (!firstName || !lastName || !email || !password || !confirmPassword) {
         setError('Please fill in all fields');
         return;
       }
@@ -37,13 +38,23 @@ const RegisterPage = () => {
 
       // TODO: Replace with actual API call
       // Simulate API call
-      const userData = {
-        id: Date.now().toString(),
-        name,
+      const payload = {
         email,
+        first_name: firstName,
+        last_name: lastName,
+        password,
       };
 
-      register(userData);
+      const res = await fetch('/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) throw new Error('Registration failed');
+      const data = await res.json();
+      // data: { token, userId }
+      register(data.token, { id: data.userId, email, first_name: firstName, last_name: lastName });
       navigate('/dashboard');
     } catch (err) {
       setError('Registration failed. Please try again.');
@@ -59,13 +70,24 @@ const RegisterPage = () => {
         {error && <div className="error-message">{error}</div>}
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="name">Full Name</label>
+            <label htmlFor="firstName">First Name</label>
             <input
               type="text"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Enter your full name"
+              id="firstName"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              placeholder="Enter your first name"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="lastName">Last Name</label>
+            <input
+              type="text"
+              id="lastName"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              placeholder="Enter your last name"
               required
             />
           </div>

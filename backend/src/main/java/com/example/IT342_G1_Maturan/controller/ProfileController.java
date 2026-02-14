@@ -12,13 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/profile")
 public class ProfileController {
 
     @Autowired
     private AuthService authService;
 
-    @GetMapping("/view")
+    @GetMapping("/profile")
     public ResponseEntity<?> viewProfile(@RequestHeader(name = "Authorization", required = false) String authHeader) {
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             return ResponseEntity.status(401).body("Missing or invalid Authorization header");

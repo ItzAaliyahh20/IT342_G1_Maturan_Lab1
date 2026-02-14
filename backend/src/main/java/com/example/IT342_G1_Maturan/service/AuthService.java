@@ -39,8 +39,9 @@ public class AuthService {
         u.setPassword(hashed);
 
         User saved = userRepository.save(u);
-        String token = tokenProvider.createToken(saved.getUser_id());
-        return new AuthResponse(token, saved.getUser_id());
+        Long id = saved.getUser_id();
+        String token = tokenProvider.createToken(id);
+        return new AuthResponse(token, id);
     }
 
     public AuthResponse loginUser(LoginRequest req) {
@@ -52,8 +53,9 @@ public class AuthService {
         if (!PasswordEncoder.verify(req.getPassword(), u.getPassword())) {
             throw new IllegalArgumentException("Invalid credentials");
         }
-        String token = tokenProvider.createToken(u.getUser_id());
-        return new AuthResponse(token, u.getUser_id());
+        Long id = u.getUser_id();
+        String token = tokenProvider.createToken(id);
+        return new AuthResponse(token, id);
     }
 
     public Optional<User> validateUser(String token) {
