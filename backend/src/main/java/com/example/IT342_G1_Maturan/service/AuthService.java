@@ -1,15 +1,16 @@
 package com.example.IT342_G1_Maturan.service;
 
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.example.IT342_G1_Maturan.dto.AuthResponse;
 import com.example.IT342_G1_Maturan.dto.LoginRequest;
 import com.example.IT342_G1_Maturan.dto.RegisterRequest;
 import com.example.IT342_G1_Maturan.entity.User;
 import com.example.IT342_G1_Maturan.repository.UserRepository;
 import com.example.IT342_G1_Maturan.util.PasswordEncoder;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class AuthService {
@@ -41,7 +42,9 @@ public class AuthService {
         User saved = userRepository.save(u);
         Long id = saved.getUser_id();
         String token = tokenProvider.createToken(id);
-        return new AuthResponse(token, id);
+        String fullName = (saved.getFirst_name() != null ? saved.getFirst_name() : "") + " " + 
+                         (saved.getLast_name() != null ? saved.getLast_name() : "");
+        return new AuthResponse(token, id, fullName.trim(), saved.getEmail());
     }
 
     public AuthResponse loginUser(LoginRequest req) {
@@ -55,7 +58,9 @@ public class AuthService {
         }
         Long id = u.getUser_id();
         String token = tokenProvider.createToken(id);
-        return new AuthResponse(token, id);
+        String fullName = (u.getFirst_name() != null ? u.getFirst_name() : "") + " " + 
+                         (u.getLast_name() != null ? u.getLast_name() : "");
+        return new AuthResponse(token, id, fullName.trim(), u.getEmail());
     }
 
     public Optional<User> validateUser(String token) {

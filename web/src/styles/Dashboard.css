@@ -84,11 +84,44 @@
   margin-bottom: 5px;
 }
 
+.profile-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+
+.profile-title-icon {
+  width: 26px;
+  height: 26px;
+  stroke: #667eea;
+  flex-shrink: 0;
+}
+
+/* nav profile title */
+.nav-profile-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 20px;
+  color: #667eea;
+}
+
+.nav-profile-icon {
+  width: 20px;
+  height: 20px;
+  stroke: #667eea;
+  flex-shrink: 0;
+}
+
 .profile-info p {
   margin: 0;
   color: #666;
   font-size: 16px;
 }
+
+/* email icons removed from dashboard */
 
 .profile-details {
   margin-bottom: 30px;

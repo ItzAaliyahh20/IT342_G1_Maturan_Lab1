@@ -21,7 +21,13 @@ const ProfilePage = () => {
           <div className="profile-header">
             <div className="avatar">{user?.name?.charAt(0)?.toUpperCase()}</div>
             <div className="profile-info">
-              <h1>{user?.name || `${user?.first_name || ''} ${user?.last_name || ''}`.trim() || 'User'}</h1>
+              <h1 className="profile-title">
+                <svg className="profile-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                  <circle cx="12" cy="8" r="3"></circle>
+                  <path d="M4 20v-1a7 7 0 0 1 14 0v1"></path>
+                </svg>
+                {user?.name || `${user?.first_name || ''} ${user?.last_name || ''}`.trim() || 'User'}
+              </h1>
               <p>{user?.email}</p>
             </div>
           </div>

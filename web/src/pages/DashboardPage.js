@@ -16,12 +16,15 @@ const DashboardPage = () => {
     <div className="dashboard-container">
       <nav className="dashboard-nav">
         <div className="nav-brand">
-          <h2>IntegSystem</h2>
+          <h2 className="nav-profile-title">
+            <svg className="nav-profile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+              <circle cx="12" cy="8" r="3"></circle>
+              <path d="M4 20v-1a7 7 0 0 1 14 0v1"></path>
+            </svg>
+            Profile
+          </h2>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button className="profile-btn" onClick={() => navigate('/profile')}>
-            Profile
-          </button>
           <button className="logout-btn" onClick={handleLogout}>
             Logout
           </button>
@@ -33,7 +36,13 @@ const DashboardPage = () => {
           <div className="profile-header">
             <div className="avatar">{user?.name?.charAt(0).toUpperCase()}</div>
             <div className="profile-info">
-              <h1>{user?.name || 'User'}</h1>
+              <h1 className="profile-title">
+                <svg className="profile-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                  <circle cx="12" cy="8" r="3"></circle>
+                  <path d="M4 20v-1a7 7 0 0 1 14 0v1"></path>
+                </svg>
+                {user?.name || 'User'}
+              </h1>
               <p>{user?.email}</p>
             </div>
           </div>
@@ -54,26 +63,10 @@ const DashboardPage = () => {
             </div>
           </div>
 
-          <div className="profile-actions">
-            <button className="btn-secondary">Edit Profile</button>
-            <button className="btn-secondary">Change Password</button>
-          </div>
+          
         </div>
 
-        <div className="dashboard-grid">
-          <div className="dashboard-card">
-            <h3>Quick Stats</h3>
-            <div className="stat">
-              <span className="stat-label">Account Status</span>
-              <span className="stat-value">Active</span>
-            </div>
-          </div>
-
-          <div className="dashboard-card">
-            <h3>Recent Activity</h3>
-            <p>No recent activity</p>
-          </div>
-        </div>
+        
       </div>
     </div>
   );

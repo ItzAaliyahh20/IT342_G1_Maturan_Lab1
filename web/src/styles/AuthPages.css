@@ -1,4 +1,5 @@
 /* Authentication Pages - Login & Register */
+/* Authentication Pages - Login & Register */
 .auth-container {
   display: flex;
   justify-content: center;
@@ -6,80 +7,107 @@
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 24px;
 }
 
 .auth-box {
-  background: white;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(250,250,252,0.98));
+  padding: 36px 36px;
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(22, 27, 80, 0.28);
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
+  border: 1px solid rgba(102,126,234,0.08);
 }
 
 .auth-box h1 {
   text-align: center;
-  margin-bottom: 30px;
-  color: #333;
-  font-size: 28px;
+  margin-bottom: 18px;
+  color: #222;
+  font-size: 26px;
+  letter-spacing: 0.2px;
+}
+
+.auth-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.auth-title-icon {
+  width: 28px;
+  height: 28px;
+  stroke: #455be6;
+  flex-shrink: 0;
+}
+
+.auth-subtitle {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #666;
+  font-size: 14px;
 }
 
 .error-message {
-  background-color: #fee;
-  color: #c00;
-  padding: 12px;
-  border-radius: 5px;
-  margin-bottom: 20px;
+  background-color: #fff0f0;
+  color: #b71c1c;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
   text-align: center;
-  font-size: 14px;
-  border-left: 4px solid #c00;
+  font-size: 13px;
+  border: 1px solid rgba(183,28,28,0.08);
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .form-group label {
   display: block;
   margin-bottom: 8px;
-  color: #333;
-  font-weight: 500;
-  font-size: 14px;
+  color: #444;
+  font-weight: 600;
+  font-size: 13px;
 }
 
 .form-group input {
   width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  padding: 12px 14px;
+  border: none;
+  border-radius: 10px;
   font-size: 14px;
-  transition: border-color 0.3s;
+  transition: box-shadow 0.18s, transform 0.12s;
   box-sizing: border-box;
+  background: #f7f8fb;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 1px 2px rgba(16,24,40,0.02);
 }
 
 .form-group input:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  box-shadow: 0 4px 18px rgba(102,126,234,0.14), inset 0 1px 0 rgba(255,255,255,0.6);
+  transform: translateY(-1px);
 }
 
 .auth-box button {
   width: 100%;
   padding: 12px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #5566e6 0%, #6f4bd1 100%);
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  margin-top: 10px;
+  transition: transform 0.14s ease, box-shadow 0.14s ease, opacity 0.12s;
+  margin-top: 6px;
+  box-shadow: 0 8px 20px rgba(102,126,234,0.14);
 }
 
 .auth-box button:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 36px rgba(88,101,232,0.18);
 }
 
 .auth-box button:disabled {
@@ -89,18 +117,116 @@
 
 .auth-link {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 18px;
   color: #666;
   font-size: 14px;
 }
 
 .auth-link a {
-  color: #667eea;
+  color: #455be6;
   text-decoration: none;
-  font-weight: 600;
-  transition: color 0.2s;
+  font-weight: 700;
+  transition: color 0.16s;
 }
 
 .auth-link a:hover {
-  color: #764ba2;
+  color: #2f3fd6;
+}
+
+.password-input-wrapper {
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f7f8fb;
+  padding: 0 8px 0 12px;
+}
+
+.password-input-wrapper input {
+  flex: 1;
+  border: none;
+  padding: 12px 8px;
+  font-size: 14px;
+  outline: none;
+  background: #f7f8fb;
+  box-sizing: border-box;
+}
+
+.password-input-wrapper:focus-within {
+  box-shadow: 0 4px 18px rgba(102,126,234,0.12);
+}
+
+.toggle-password-icon {
+  cursor: pointer;
+  width: 48px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  background: transparent;
+}
+
+.toggle-password-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: #666;
+  transition: stroke 0.14s;
+}
+
+.toggle-password-icon:hover svg {
+  stroke: #455be6;
+}
+
+.password-input-wrapper .input-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  flex-shrink: 0;
+  stroke: #8a8f98;
+}
+
+.password-input-wrapper .input-icon rect,
+.password-input-wrapper .input-icon path {
+  stroke: #8a8f98;
+}
+
+/* generic input-with-icon (for name/email fields) */
+.input-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f7f8fb;
+  border-radius: 10px;
+  padding: 0 8px 0 12px;
+}
+
+.input-with-icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: #8a8f98;
+  flex-shrink: 0;
+}
+
+.input-with-icon input {
+  border: none;
+  background: transparent;
+  outline: none;
+  padding: 12px 8px;
+  font-size: 14px;
+  flex: 1;
+}
+
+/* ensure SVGs align consistently */
+.input-with-icon svg,
+.password-input-wrapper .input-icon,
+.toggle-password-icon svg {
+  display: block;
+  vertical-align: middle;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.input-with-icon:focus-within {
+  box-shadow: 0 4px 18px rgba(102,126,234,0.08);
 }
