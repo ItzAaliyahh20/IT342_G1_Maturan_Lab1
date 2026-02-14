@@ -5,7 +5,6 @@ import PublicRoute from './components/PublicRoute';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import DashboardPage from './pages/DashboardPage';
-import ProfilePage from './pages/ProfilePage';
 import './App.css';
 
 function App() {
@@ -28,14 +27,6 @@ function App() {
             element={
               <PrivateRoute>
                 <DashboardPage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <PrivateRoute>
-                <ProfilePage />
               </PrivateRoute>
             }
           />
