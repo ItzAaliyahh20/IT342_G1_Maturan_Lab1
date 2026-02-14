@@ -5,6 +5,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [token, setToken] = useState(null);
 
   // Initialize from localStorage on mount
   useEffect(() => {
@@ -14,7 +15,7 @@ export const AuthProvider = ({ children }) => {
       setUser(JSON.parse(storedUser));
     }
     if (storedToken) {
-      // token can be used by fetch calls
+      setToken(storedToken);
     }
     setLoading(false);
   }, []);
@@ -22,19 +23,23 @@ export const AuthProvider = ({ children }) => {
   const register = (token, userData) => {
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(userData));
+    setToken(token);
     setUser(userData);
   };
 
   const login = (token, userData) => {
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(userData));
+    setToken(token);
     setUser(userData);
   };
 
   const logout = () => {
-    // Clear user data from localStorage
+    // Clear user data and token from localStorage
     localStorage.removeItem('user');
+    localStorage.removeItem('token');
     setUser(null);
+    setToken(null);
   };
 
   const value = {
@@ -43,7 +48,7 @@ export const AuthProvider = ({ children }) => {
     register,
     login,
     logout,
-    isAuthenticated: !!localStorage.getItem('token'),
+    isAuthenticated: !!token,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
